@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+            width: 800px;
+            height: 400px;
+            margin: 10px auto;
+        }
+        #ground{
+            position: relative;
+            width: 800px;
+            height: 400px;
+            border: 2px solid #000;
+            background: url("./img/bg.jpg") no-repeat center/cover;
+            text-align: center;
+            line-height: 400px;
+            font-size: 40px;
+            color: red;
+        }
+        #ground div{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+        }
+        #start{
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 100%;
+            height: 100%;
+            background-color: #ddd;
+        }
+        #start div{
+            float: left;
+            box-sizing: border-box;
+            border-left: 1px solid #000000;
+            width: 50%;
+            height: 100%;
+            font-size: 22px;
+            text-align: center;
+            color: blue;
+        }
+        #start #right p{
+            line-height: 100px;
+        }
+        #start #left{
+            text-align: center;
+            line-height: 100px;
+        }
+        #start #left #ok{
+            display:inline-block;
+            margin: 50px 100px;
+            width: 200px;
+            height: 50px;
+        }
+        #start #left p{
+            display: inline-block;
+            width: 400px;
+        }
+        #start #left p span{
+            color: red;
+        }
+        #start #left button{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="ground">
+        </div>
+        <div id="start">
+            <div id="left">
+                <button id="ok">开始游戏</button>
+                <p>游戏难度：<span id="difficulty">1</span></p>
+                <button class="btn">减少难度</button>
+                <button class="btn">增加难度</button>
+            </div>
+            <div id="right">
+                <p>操作说明：</p>
+                <p>w: 上 ，s: 下 ，a: 左 ，d: 右</p>
+                <p>游戏难度为 1 - 10</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const ground = document.querySelector('#ground'),
+        startApi = document.querySelector('#start'),
+        start = document.querySelector('#ok'),
+        difficulty = document.querySelector('#difficulty'),
+        btn = document.querySelectorAll('.btn')
+    let direction = 'right'
+    let time = 1000 / (difficulty.innerHTML * 1)
+    let timerT = null
+    start.addEventListener('click', function () {
+        startApi.style.display = 'none'
+        setTimeout(createSneak, 1000)
+    })
+    btn[0].addEventListener('click', function () {
+        let index = difficulty.innerHTML * 1
+        if (index === 1) return
+        difficulty.innerHTML = --index
+        time = 1000 / index
+    })
+    btn[1].addEventListener('click', function () {
+        let index = difficulty.innerHTML * 1
+        if (index === 10) return
+        difficulty.innerHTML = ++index
+        time = 1000 / index
+    })
+    function createSneak() {
+        const head = document.createElement('div'),
+            body = document.createElement('div'),
+            foot = document.createElement('div')
+        head.className = 'head sneak'
+        body.className = 'body sneak'
+        foot.className = 'foot sneak'
+        head.style.cssText = `top: 0px; left: 40px;`
+        body.style.cssText = `top: 0px; left: 20px;`
+        foot.style.cssText = `top: 0px; left: 0px;`
+        head.dataset.dataDirect = 'right'
+        body.dataset.dataDirect = 'right'
+        foot.dataset.dataDirect = 'right'
+        ground.appendChild(head)
+        ground.appendChild(body)
+        ground.appendChild(foot)
+        sneakImg()
+        timer()
+        creatFood()
+        transformSneak()
+    }
+    function timer() {
+        clearInterval(timerT)
+        timerT = setInterval(move, time)
+    }
+    function move() {
+        const head = document.getElementsByClassName('head')[0],
+            headTop = head.offsetTop,
+            headLeft = head.offsetLeft
+        moving(headTop, headLeft)
+        switch (direction) {
+            case 'right' :
+                head.style.left = `${headLeft+20}px`
+                gameOver(headTop, headLeft+20)
+                head.dataset.dataDirect = 'right'
+                break
+            case 'left' :
+                head.style.left = `${headLeft-20}px`
+                gameOver(headTop, headLeft-20)
+                head.dataset.dataDirect = 'left'
+                break
+            case 'top' :
+                head.style.top = `${headTop-20}px`
+                gameOver(headTop-20, headLeft)
+                head.dataset.dataDirect = 'top'
+                break
+            case 'bottom' :
+                head.style.top = `${headTop+20}px`
+                gameOver(headTop+20, headLeft)
+                head.dataset.dataDirect = 'bottom'
+                break
+        }
+        transformSneak()
+        eatTime()
+    }
+    function moving(headTop, headLeft) {
+        const sneak = document.querySelectorAll('.sneak')
+        for (let i = sneak.length - 1; i > 0; i--){
+            sneak[i].style.left = sneak[i - 1].style.left
+            sneak[i].style.top = sneak[i - 1].style.top
+            sneak[i].dataset.dataDirect = sneak[i - 1].dataset.dataDirect
+        }
+    }
+    document.addEventListener('keydown', keydown)
+    function keydown(event) {
+        const key = event.keyCode;
+        console.log(key)
+        switch (key) {
+            case 65:
+                if (direction === 'right') return
+                direction = 'left'
+                break;
+            case 68:
+                if (direction === 'left') return
+                direction = 'right'
+                break;
+            case 83:
+                if (direction === 'top') return
+                direction = 'bottom'
+                break;
+            case 87:
+                if (direction === 'bottom') return
+                direction = 'top'
+                break;
+        }
+    }
+    function gameOver(headTop, headLeft) {
+        const top = ground.offsetHeight - 4,
+            left = ground.offsetWidth - 4,
+            sneak = document.querySelectorAll('.sneak')
+        if (headLeft+20 === 0 || headTop+20 === 0 || headLeft === left || headTop === top ) over()
+        sneak.forEach((e, i) => {
+            if (i === 0) return
+            const bodyTop = e.offsetTop,
+                bodyLeft = e.offsetLeft
+            if (headLeft=== bodyLeft && headTop === bodyTop) over()
+        })
+        function over() {
+            const div = document.createElement('div'),
+                button = document.createElement('button'),
+                p = document.createElement('p')
+            div.className = 'gameover'
+            div.style.cssText = `width: 100%; height:100%; line-height: 0;`
+            p.innerText = '游戏结束'
+            p.style.cssText = `display:block;height:250px;line-height: 250px;`
+            button.style.cssText = `width:200px; height:50px;`
+            button.innerText = '重新开始'
+            button.addEventListener('click', function () {
+                const over = document.querySelector('.gameover'),
+                    food = document.querySelector('.food')
+                ground.removeChild(over)
+                sneak.forEach(e => {
+                    ground.removeChild(e)
+                })
+                ground.removeChild(food)
+                direction = 'right'
+                setTimeout(createSneak, 1000)
+            })
+            div.appendChild(p)
+            div.appendChild(button)
+            ground.appendChild(div)
+            clearInterval(timerT)
+        }
+    }
+    function creatFood() {
+        const x = (ground.offsetWidth - 4) / 20,
+            y = (ground.offsetHeight - 4) / 20,
+            top = createNum(y) * 20,
+            left = createNum(x) * 20,
+            sneak = document.querySelectorAll('.sneak')
+        const bool = sneak.forEach( e => {
+            if (e.offsetTop === top || e.offsetLeft === left) return true
+        })
+        if (bool){
+            creatFood()
+        }else {
+            const food = document.createElement('div')
+            food.className = 'food'
+            food.style.cssText =
+                `background: url('./img/food.jpg') no-repeat center/cover; top: ${top}px; left:${left}px`
+            ground.appendChild(food)
+        }
+    }
+    function createNum(idx) {
+        const numbe = parseInt(Math.random() * idx)
+        return numbe
+    }
+    function eatTime() {
+        const head = document.querySelector('.head'),
+            food = document.querySelector('.food')
+        if (head.offsetTop === food.offsetTop && head.offsetLeft === food.offsetLeft) {
+            eatFood()
+        }
+    }
+    function eatFood() {
+        const foot = document.querySelector('.foot'),
+            food = document.querySelector('.food'),
+            top = foot.offsetTop,
+            left = foot.offsetLeft
+        const div = document.createElement('div')
+        div.className = 'foot sneak'
+        div.style.cssText = `top:${top}px; left:${left}px;`
+        foot.classList.remove('foot')
+        foot.classList.add('body')
+        ground.appendChild(div)
+        ground.removeChild(food)
+        sneakImg()
+        creatFood()
+        timer()
+    }
+    function sneakImg() {
+        const sneak = document.querySelectorAll('.sneak')
+        sneak[0].style.background = `url('./img/head.jpg') no-repeat center/cover`
+        for (let i = sneak.length - 2; i > 0; i--){
+            sneak[i].style.background = `url('./img/body.png') no-repeat center/cover`
+        }
+        sneak[sneak.length - 1].style.background = `url('./img/foot1.jpg') no-repeat center/cover`
+    }
+    function transformSneak() {
+        const sneak = document.querySelectorAll('.sneak')
+        sneak.forEach((e, i) => {
+            switch (e.dataset.dataDirect) {
+
+                case 'right':
+                    e.style.transform = `rotate(0deg)`
+                    break
+                case 'left':
+                    e.style.transform = `rotate(180deg)`
+                    break
+                case 'top':
+                    e.style.transform = `rotate(270deg)`
+                    break
+                case 'bottom':
+                    e.style.transform = `rotate(90deg)`
+                    break
+            }
+        })
+    }
+</script>
+</html>

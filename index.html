@@ -2,113 +2,465 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="css.css" />
+	<title>luoyexiaoyu</title>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: "微软雅黑"；
+		}
+		.box {
+			width: 1200px;
+			margin: 0 auto;
+			background: url(images/bg1.jpg) repeat center;
+		}
+		.start {
+			display: none;
+			width: 1200px;
+			height: 700px;
+			margin: 0 auto;	
+			position: relative;
+		}
+		.lt,.rt,.lb,.rb {
+			position: absolute;
+			width: 500px;
+			height: 350px;
+			border-radius: 50px;
+		}
+		.lt {
+			top: 0;
+			left: 0;
+			background:url(images/sta.jpg);
+		}
+		.rt {
+			top: 0;
+			right: 0;
+			background:url(images/sta1.jpg);
+		}
+		.lb {
+			bottom: 0;
+			left: 0;
+			background:url(images/sta2.jpg);
+		}
+		.rb {
+			bottom: 0;
+			right: 0;
+			background:url(images/sta3.jpg);
+		}
+		.tc,.bc {
+			position: absolute;
+			left: 500px;
+			width: 200px;
+			height: 300px;
+			font-size: 70px;
+			font-family: "微软雅黑";
+			line-height: 300px;
+			text-align: center;
+		}
+		.tc {
+			top: 0;
+		}
+		.bc {
+			bottom: 0;
+		}
+		.center {
+			position: absolute;
+			top: 300px;
+			left: 500px;
+			width: 200px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: pink;
+			line-height: 100px;
+			text-align: center;
+			font-size: 30px;
+			font-family: "微软雅黑";
+			font-style: italic;
+			cursor: pointer;
+			color: blue;
+		}
+		.center:hover {
+			background-color: blue;
+			color: pink;
+			transition: 1.5s;
+		}
+		.content {
+			width: 1200px;
+			height: 700px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.left {
+			float: left;
+			width: 320px;
+			height: 670px;
+			padding-top: 30px;
+			padding-left: 30px;
+		}
+		.top {
+			width: 300px;
+			height: 200px;
+			background: url(images/luoye.jpg) no-repeat center;
+			border-radius: 50%;
+		}
+		.cen,.cen a {
+			width: 300px;
+			height: 50px;
+			background-color: yellow;
+			line-height: 50px;
+			text-align: center;
+			margin-top: 40px;
+			border-radius: 50px;
+			cursor: pointer;
+			color: black;
+		}
+		.cen a {
+			display: block;
+			text-decoration: none;
+			transition: 1s;
+		}
+		.cen a:hover {
+			color: yellow;
+			background-color: black;
+			transition: 1s;
+		}
+		#bottom {
+			width: 200px;
+			height: 220px;
+			background-color: #369;
+			margin-left: 45px;
+			margin-top: 50px;
+			text-align: center;
+		}
+		#bottom p {
+			font-size: 15px;
+			line-height: 30px;
+		}
+		#bottom i {
+			font-style: normal;
+			display: block;
+			font-weight: bolder;
+		}
+		#bottom span {
+			display: block;
+			width: 80px;
+			height: 80px;
+			border-radius: 20px;
+			font-size: 50px;
+			line-height: 80px;
+			background-color: yellowgreen;
+			margin: 0 auto;
+		}
+		#bottom .bot {
+			margin-top: 20px;
+			color: skyblue;
+		}
+		.zhong {
+			width: 250px;
+			height: 100%;
+			float: left;
+		}
+		.name {
+			width: 100%;
+			height: 100px;
+			line-height: 100px;
+			text-align: center;
+			font-size: 40px;
+			color: gold;
+		}
+		.nameCenter {
+			width: 100%;
+			height: 400px;
+			text-align: center;
+			background: url(images/2.gif) no-repeat center;
+		}
+		.nameBottom {
+			width: 100%;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			color: green;
+		}
+		.right {
+			width: 600px;
+			height: 100%;
+			float: right;
+		}
+		.right .rg1 {
+			width: 100%;
+			height: 80px;
+			margin-bottom: 10px;
+		}
+		.rg1 ul {
+			list-style: none;
+		}
+		.rg1 ul li {
+			float: right;
+			width: 100px;
+			height: 100%;
+			background-color: orange;
+			line-height: 80px;
+			text-align: center;
+			margin-right: 30px;
+			border-radius: 50%;
+		}
+		.rg1 ul li a {
+			display: block;
+			width: 100px;
+			height: 100%;
+			background-color: orange;
+			line-height: 80px;
+			text-align: center;
+			margin-right: 30px;
+			color: black;
+			text-decoration: none;
+			transition: 1.5s;
+			border-radius: 50%;
+		}
+		.rg1 ul li a:hover {
+			color: orange;
+			background-color: black;
+			transition: 1.5s;
+		}
+		.right .rg2 {
+			width: 100%;
+			height: 350px;
+			margin-bottom: 10px;
+		}
+		.right .rg2 ul,li {
+			list-style: none;
+		}
+		.right .rg2 .box1 {
+			width: 500px;
+			height: 350px;
+			border: 1px solid #444;
+			margin: 0 auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.right .rg2 .demo {
+			width: 600%;
+			height: 100%;
+			position: absolute;
+		}
+		.right .rg2 ul li,.right .rg2 ol li {
+			float: left;
+		}
+		.right .rg2 ol {
+			position: absolute;
+			bottom: 10px;
+			right: 5px;
+		}
+		.right .rg2 ol li {
+			width: 20px;
+			height: 20px;
+			border: 2px solid #999;
+			margin-left: 5px;
+			cursor: pointer;
+			text-align: center;
+			line-height: 20px;
+			color: red;
+		}
+		.current {
+			background-color: orange;
+		}
+		.right .rg3 {
+			width: 580px;
+			height: 220px;
+			padding-left: 20px;
+			padding-top: 20px;
+		}
+		.right .rg3 h2 {
+			margin-bottom: 20px;
+			color: orange;
+		}
+		.right .rg3 p {
+			margin-bottom: 20px;
+			color: pink;
+		}
+	</style>
 </head>
 <body>
-	<!--头部-->
-	<div class="daohang">
-		<div id="menu">
-			Menu
+	<div class="box">
+		<div class="start">
+			<div class="lt"></div>
+			<div class="tc">落叶</div>
+			<div class="rt"></div>
+			<div class="center">Welcome</div>
+			<div class="lb"></div>
+			<div class="bc">小宇</div>
+			<div class="rb"></div>
 		</div>
-		<div id="hezi">
-			<ul>
-				<li class="first"><a href="#">HOME</a></li>
-				<li><a href="#">MAGAZINE</a></li>
-				<li><a href="#">STRANGE BUILDINGS</a></li>
-				<li class="four"><a href="#">ARCHITECTURE</a></li>
-				<li><a href="#">BLOG</a></li>
-				<li><a href="#">NEWS</a></li>
-			</ul>
-		</div>
-		<script type="text/javascript">
-			function $(id){
-				return document.getElementById(id);
-			}
-			$("menu").onclick = function(){
-				if ($("hezi").style.display == "none"){
-					$("hezi").style.display = "block";
-				}
-				else {
-					$("hezi").style.display = "none";
-				}
-			}
-		</script>
-		<div class="logo"></div>
-		<div class="left">
-			<ul>
-				<li class="first"><a href="#">HOME</a></li>
-				<li><a href="#">MAGAZINE</a></li>
-				<li><a href="#">STRANGE BUILDINGS</a></li>
-				<li class="forth"><a href="">ARCHITECTURE</a></li>
-				<li><a href="#">BLOG</a></li>
-				<li><a href="#">NEWS</a></li>
-			</ul>
-		</div>
-		<div class="right">
-			<ul>
-				<li class="one"><i></i></li>
-				<li class="two"><i></i></li>
-				<li class="three"><i></i></li>
-			</ul>
-		</div>
-		<div class="search"></div>
-	</div>
-	<!--头部结束-->
-	<!--中间部分-->
-	<div class="content">
-		404
-		<p>WE ARE SORRY</p>
-		<p class="p1">We seem to have lost this page, try one of these instead.</p>
-		<div class="page">PAGE NOT FOUND</div>
-		<div class="bak"><a href="">Back to home</a></div>
-	</div>
-	<div class="neirong">
-		<div class="left1">
-			<h4>Site Map</h4><br />
-			<div class="box1">
-				<div class="lf">
-					<p>Home</p><p>Home</p><p>Home</p><p>Home</p><p>Home</p><p>Home</p><p>Home</p><p>Home</p>
+		<div class="content">
+			<div class="left">
+				<div class="top"></div>
+				<div class="cen"><a href="index.html">个人主页</a></div>
+				<div id="bottom">
+					<p>
+						<i></i>
+						<i></i>
+					</p>
+					<span></span>
+					<i class="bot"></i>
 				</div>
-				<div class="ce">
-					<p>Privey</p><p>Privey</p><p>Privey</p><p>Privey</p><p>Privey</p><p>Privey</p><p>Privey</p><p>Privey</p>
+			</div>
+			<div class="zhong">
+				<div class="name">落叶※小宇</div>
+				<div class="nameCenter"></div>
+				<div class="nameBottom">联系qq：1819650049</div>
+			</div>
+			<div class="right">
+				<div class="rg1">
+					<ul>
+						<li><a href="#">实践案例</a></li>
+						<li><a href="#">移动端</a></li>
+						<li><a href="demo.html">H5小游戏</a></li>
+						<li><a href="#">首页</a></li>
+					</ul>
 				</div>
-				<div class="rg"><p>Magazine</p><p>Magazine</p><p>Magazine</p><p>Magazine</p><p>Magazine</p><p>Magazine</p><p>Magazine</p><p>Magazine</p>
+				<div class="rg2">
+					<div class="box1" id="box">
+					<div class="demo" id="demo">
+						<ul>
+							<li><img src="images/sta.jpg" alt="" /></li>
+							<li><img src="images/sta1.jpg" alt="" /></li>
+							<li><img src="images/sta2.jpg" alt="" /></li>
+							<li><img src="images/sta3.jpg" alt="" /></li>
+							<li><img src="images/sta4.jpg" alt="" /></li>
+						</ul>
+					</div>
+		<!--<div class="content" id="content">
+			<span id="left"><</span>
+			<span id="right">></span>
+		</div>-->
+					</div>
 				</div>
-			</div>	
-		</div>
-		<div class="center1">
-			<h4>Dont Miss Read</h4><br />
-			<div class="box2">
-				<div class="top">
-					<img src="images/slide-2.jpg" width="100" height="100" alt="" />
-					<p>Captivating Spanish Villa in Port d’Andratx <br />Boasting Exceptional Views</p>
-					<span>Posted on August 14, 2013</span>
-				</div>
-				<div class="cl"></div>
-				<div class="bottom" >
-					<img src="images/slide-2.jpg" width="100" height="100" alt="" />
-					<p>Captivating Spanish Villa in Port d’Andratx <br />Boasting Exceptional Views</p>
-					<span>Posted on August 14, 2013</span>
+				<div class="rg3">
+					<h2>主页介绍</h2>
+					<p>欢迎大家来到我的主页，谢谢！</p>
+					<h2>内容</h2>
+					<p>以前写过的一些小案例</p>
 				</div>
 			</div>
 		</div>
-		<div class="right1">
-			<h4>Follow Us Here</h4><br />
-			<div class="jingling">
-				<ul>
-					<li class="one"><a href="#"><i></i><span>423.3k Followers</span></a></li>
-					<li class="two"><a href="#"><i></i><span>423.3k Followers</span></a></li>
-					<li class="three"><a href="#"><i></i><span>423.3k Followers</span></a></li>
-					<li class="four"><a href="#"><i></i><span>423.3k Followers</span></a></li>
-				</ul>
-			</div>
-		</div>
 	</div>
-	<div class="cl"></div>
-	<!--中间结束-->
-	<div class="foot">
-		<div class="tupian"><a href="#"></a></div>
-	</div>
+	<script type="text/javascript">
+		function time() {
+			var box = document.getElementById("bottom");
+			var p = document.getElementsByTagName("p")[0];
+			var childs = box.children;
+			var boys = p.children;
+			var date = new Date();
+			var array = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+			boys[0].innerHTML = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+			boys[1].innerHTML = array[date.getDay()];
+			childs[1].innerHTML = date.getDate();
+			var shi = 0;var miao = 0;var fen = 0;
+			setInterval(function() {
+				var date = new Date();
+				var h = date.getHours();
+				var m = date.getMinutes();
+				var s = date.getSeconds();
+				shi = 24 - h - 1;
+				fen = 60 - m - 1;
+				miao = 60 - s - 1;
+				shi<10 ? shi="0"+shi : shi;
+				fen<10 ? fen="0"+fen : fen;
+				miao<10 ? miao="0"+miao : miao;
+				childs[2].innerHTML = "截止今天结束还剩："+shi+"小时 "+fen+"分 "+miao+"秒";
+			},1000);
+		}
+		time();
+		function animate1() {
+			var box = document.getElementById("box");
+			var demo = document.getElementById("demo");
+			var lis = demo.children[0].children;
+			var ol = document.createElement("ol");
+			box.appendChild(ol);
+			for(var i=0;i<lis.length;i++) {
+				var li = document.createElement("li");
+				ol.appendChild(li);
+				li.innerHTML = i + 1;
+			}
+			demo.children[0].appendChild(demo.children[0].children[0].cloneNode(true));//克隆第一张图片
+			ol.children[0].className = "current";
+			var ollis = ol.children;
+			for(var i=0;i<ollis.length;i++) {
+				ollis[i].index = i;
+				ollis[i].onmouseover = function() {
+					for(var j=0;j<ollis.length;j++) {
+						ollis[j].className = "";
+					}
+					this.className = "current";
+					//idx = this.index;
+					animate(demo,-500*this.index);
+					key = square = this.index;
+				}
+			}
+			//1.图片上作用结束
+			/*var content = document.getElementById("content");
+			var left = document.getElementById("left");
+			var right = document.getElementById("right");
+			var idx = 0;
+			left.onclick = function() {
+				idx--;
+				for(var j=0;j<ollis.length;j++) {
+					ollis[j].className = "";
+				}
+				ollis[idx].className = "current";
+			}*/
+
+			var key = 0;
+			var square = 0;
+			var timer = null;
+			timer = setInterval(autoplay,2500);
+			function autoplay() {
+				key++;
+				//console.log(key);
+				//alert(lis.length);
+				if(key>ollis.length) {
+					demo.style.left = 0;
+					key = 1;
+				}
+				animate(demo,-key*500);
+				square++;
+				//console.log(square);
+				if(square>ollis.length-1) {
+					square = 0;
+				}
+				for(var i=0;i<ollis.length;i++) {
+					ollis[i].className = "";
+				}
+				ollis[square].className = "current";
+			}
+			box.onmouseover = function() {
+				clearInterval(timer);
+				//content.style.display = "block";
+			}
+			box.onmouseout = function() {
+				timer = setInterval(autoplay,2500);
+				//content.style.display = "none";
+			}
+			function animate(obj,target) {
+				clearInterval(obj.timer);
+				obj.timer = setInterval(function() {
+					var speed = obj.offsetLeft<target ? 10 : -10;
+					var result = target - obj.offsetLeft;
+					//console.log(obj.offsetLeft);
+					//console.log(target);
+					obj.style.left = obj.offsetLeft + speed +"px";
+					if(Math.abs(result)<=10) {
+						clearInterval(obj.timer);
+						obj.style.left = target + "px";//10像素差距
+					}
+					//obj.style.left = obj.offsetLeft + speed +"px";
+				},10);
+			}
+		}
+		animate1();
+	</script>
 </body>
 </html>

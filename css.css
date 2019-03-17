@@ -1,0 +1,315 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "微软雅黑";
+}
+.daohang {
+	height: 70px;
+	background-color: #1D2124;
+}
+#menu {
+	width: 70px;
+	height: 32px;
+	background: url(images/menu.png) no-repeat center 20px;
+	padding-top: 38px;
+	background-color: #171A1C;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	position: fixed;
+	z-index: 1;
+}
+#hezi {
+	display: none;
+	position: fixed;
+	margin-top: 70px;
+	z-index: 1;
+}
+#hezi ul {
+	list-style: none;
+}
+#hezi ul li {
+	width: 200px;
+	height: 50px;
+	background-color: #157484;
+	border-top: 1px solid #fff;
+}
+#hezi li.first {
+	border-top: 0 none;
+}
+#hezi li.four {
+	background-color: #000;
+}
+#hezi ul li a {
+	display: block;
+	font: 400 15px/40px "微软雅黑";
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	width: 200px;
+	height: 50px;
+	transition: .5s;
+}
+#hezi ul li a:hover {
+	background-color: #000;
+}
+.logo {
+	width: 250px;
+	height: 70px;
+	background: url(images/logo.png) no-repeat 100px center;
+	background-color: #1D2124;
+	float: left;
+	margin-right: 30px;
+}
+.left {
+	overflow: hidden;
+	float: left;
+}
+.left ul {
+	list-style: none;
+}
+.left ul li {
+	height: 70px;
+	text-align: center;
+	margin-left: 30px;
+	float: left;
+}
+.left ul li a {
+	text-decoration: none;
+	display: block;
+	height: 70px;
+	line-height: 70px;
+	color: white;
+}
+.left ul li a:hover {
+	color: blue;
+}
+.left .first a,.left .forth a {
+	color: blue;
+}
+.right {
+	float: left;
+	margin-left: 50px;
+}
+.right .one i {
+	background: url(images/social-icons.png) no-repeat left top;
+}
+.right .two i {
+	background: url(images/social-icons.png) no-repeat center top;
+}
+.right .three i {
+	background: url(images/social-icons.png) no-repeat right top;
+} 
+.right .one i:hover {
+	background: url(images/social-icons.png) no-repeat left bottom;
+}
+.right .two i:hover {
+	background: url(images/social-icons.png) no-repeat center bottom;
+}
+.right .three i:hover {
+	background: url(images/social-icons.png) no-repeat right bottom;
+} 
+.right ul {
+	list-style: none;
+}
+.right ul li {
+	float: left;
+	width: 30px;
+	height: 70px;
+	padding-top: 20px;
+}
+.right ul li i {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	cursor: pointer;
+	transition: .5s;
+}
+.search {
+	float: right;
+	width: 70px;
+	height: 70px;
+	background: url(images/srch.png) no-repeat center;
+	background-color: #171A1C;
+	cursor: pointer;
+}
+.content {
+	position: relative;
+	padding-top: 90px;
+	font: 700 200px "微软雅黑";
+	color: #14B9D5;
+	text-align: center;
+	margin-bottom: 100px;
+}
+.content p {
+	font: 700 30px "微软雅黑";
+}
+.content .p1 {
+	font: 700 15px "微软雅黑";
+}
+.content .page {
+	position: absolute;
+	top: 200px;
+	left: 420px;
+	width: 400px;
+	height: 50px;
+	background-color: #CCE8CF;
+	color: #14B9D5; 	
+	font: 700 30px/50px "微软雅黑";
+}
+.bak {
+	width: 180px;
+	height: 70px;
+	background-color: #14B9D5;
+	margin: 70px auto;
+}
+.bak a {
+	display: block;
+	font: 600 20px/70px "微软雅黑";
+	width: 180px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px; 
+	text-decoration: none;
+	color: white;
+	transition: 1s;
+}
+.bak a:hover {
+	background-color: #89CA62;
+}
+.neirong {
+	padding-left: 70px;
+}
+.left1 {
+	float: left;
+}
+.box1 {
+	overflow: hidden;
+	padding-top: 20px;
+	border-top: 1px solid #ccc;
+	margin-right: 20px;
+}
+.lf {
+	margin-left: 20px;
+}
+.lf,.ce,.rg {
+	float: left;
+	width: 120px;
+	height: 300px;
+}
+.lf p,.ce p,.rg p {
+	font: 700 15px/37px "微软雅黑";
+	color: #5B6469
+}
+.center1 {
+	float: left;
+}
+.box2 {
+	width: 500px;
+	border-top: 1px solid #ccc;
+	overflow: hidden;
+}
+.top {
+	padding-top: 30px;
+	margin-bottom: 100px;
+}
+.top img {
+	float: left;
+	margin-right: 20px;
+}
+.cl {
+	clear: both;
+}
+.bottom img {
+	float: left;
+	margin-right: 20px;
+}
+.top p,.bottom p {
+	font: 600 15px/20px "微软雅黑";
+	color: #5B6469;
+	margin-bottom: 20px;
+}
+.top,.bottom span {
+	font: 700 13px "微软雅黑";
+	color: #5B6469;
+}
+.right1 {
+	float: left;
+}
+.jingling ul {
+	list-style: none;
+}
+.jingling ul li {
+	width: 180px;
+	height: 50px;
+	margin-top: 20px;
+}
+.jingling li a {
+	display: block;
+	width: 180px;
+	height: 50px;
+	padding-top: 12px;
+	text-decoration: none;
+	text-align: center;
+	color: white;
+	transition: 1s;
+}
+.jingling li a:hover {
+	color: black;
+}
+.jingling .one i,.jingling .two i,.jingling .three i,.jingling .four i {
+	display: inline-block;
+	width: 38px;
+	height: 26px;
+}
+.jingling .one span,.jingling .two span,.jingling .three span,.jingling .four span {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 13px;
+	font-weight: 700;
+	height: 26px;
+	line-height: 26px;
+}
+.jingling .one {
+	background-color: #39579A;
+}
+.jingling .two {
+	background-color: #27BFFC;
+}
+.jingling .three {
+	background-color: #F34430;
+}
+.jingling .four {
+	background-color: #DF2C32;
+}
+.jingling .one i {
+	background: url(images/social.png) no-repeat 1px 0px;
+}
+.jingling .two i {
+	background: url(images/social.png) no-repeat -37px 0px;
+}
+.jingling .three i {
+	background: url(images/social.png) no-repeat -76px 0px;
+}
+.jingling .four i {
+	background: url(images/social.png) no-repeat -115px 0px;
+}
+.foot {
+	margin-top: 80px;
+	height: 100px;
+	background-color: black;
+}
+.foot .tupian {
+	float: right;
+	width: 200px;
+	height: 100px;
+}
+.tupian a {
+	display: block;
+	width: 200px;
+	height: 100px;
+	background: url(images/lg.png) no-repeat center;
+}

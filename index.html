@@ -18,7 +18,6 @@
 			background: url(images/bg1.jpg) repeat center;
 		}
 		.start {
-			display: none;
 			width: 1200px;
 			height: 700px;
 			margin: 0 auto;	
@@ -88,6 +87,7 @@
 			transition: 1.5s;
 		}
 		.content {
+			display: none;
 			width: 1200px;
 			height: 700px;
 			margin: 0 auto;
@@ -282,6 +282,15 @@
 			color: pink;
 		}
 	</style>
+	<script type="text/javascript" src="jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#welcome').click(function() {
+				$('.start').stop().slideUp(2000);
+				$('.content').stop().fadeIn(2000);
+			});
+		});
+	</script>
 </head>
 <body>
 	<div class="box">
@@ -289,7 +298,7 @@
 			<div class="lt"></div>
 			<div class="tc">落叶</div>
 			<div class="rt"></div>
-			<div class="center">Welcome</div>
+			<div class="center" id="welcome">Welcome</div>
 			<div class="lb"></div>
 			<div class="bc">小宇</div>
 			<div class="rb"></div>

@@ -99,12 +99,14 @@
 			height: 670px;
 			padding-top: 30px;
 			padding-left: 30px;
+			position: relative;
 		}
 		.top {
 			width: 300px;
 			height: 200px;
 			background: url(images/luoye.jpg) no-repeat center;
 			border-radius: 50%;
+			cursor: pointer;
 		}
 		.cen,.cen a {
 			width: 300px;
@@ -126,6 +128,19 @@
 			color: yellow;
 			background-color: black;
 			transition: 1s;
+		}
+		.cen .indexBottom {
+			display: none;
+			position: absolute;
+			top: 320px;
+			left: 70px;
+			width: 200px;
+			height: 100px;
+			border: 10px double #444; 
+			border-radius: 10px;
+			background-color: green;
+			color: orange;
+			text-align: center;
 		}
 		#bottom {
 			width: 200px;
@@ -289,6 +304,12 @@
 				$('.start').stop().slideUp(2000);
 				$('.content').stop().fadeIn(2000);
 			});
+			$('.cen').mouseenter(function() {
+				$('.indexBottom').stop().slideDown(500);
+			});
+			$('.cen').mouseleave(function() {
+				$('.indexBottom').stop().slideUp(500);
+			});
 		});
 	</script>
 </head>
@@ -307,7 +328,10 @@
 		<div class="content">
 			<div class="left">
 				<div class="top"></div>
-				<div class="cen"><a href="index.html">个人主页</a></div>
+				<div class="cen">
+					<a href="index.html">个人主页</a>
+					<sapn class="indexBottom">Welcome To Mr.Dong's Personal Homepage</span>
+				</div>
 				<div id="bottom">
 					<p>
 						<i></i>

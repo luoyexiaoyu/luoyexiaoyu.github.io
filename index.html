@@ -382,6 +382,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		var audio = document.querySelector("audio");
+		document.onclick = function() {
+			audio.play();
+		}
 		function time() {
 			var box = document.getElementById("bottom");
 			var p = document.getElementsByTagName("p")[0];

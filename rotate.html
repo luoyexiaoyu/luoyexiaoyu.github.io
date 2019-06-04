@@ -36,7 +36,7 @@
 					<li><a href="index.html" class="lia">首页</a></li>
 					<li><a href="about.html" class="lia">关于我</a></li>
 					<li><a href="game.html" class="lia">游戏</a></li>
-					<li class="liLast"><a href="rotate.html" class="lia">手风琴</a></li>
+					<li class="liLast"><a href="rotate.html" class="lia" id="lia4">手风琴</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,6 +56,7 @@
 	<script type="text/javascript" src="js/animate.js"></script>
 	<script type="text/javascript">
 		var demo = document.getElementById('qin')
+		var lia = document.getElementById('lia4')
 		var lis = demo.children[0].children;
 		for(var i=0;i<lis.length;i++) {
 			lis[i].style.backgroundImage = "url(images/" + "sta" + i + ".jpg)";
@@ -71,6 +72,7 @@
 				}
 			}
 		}
+		lia.style.backgroundColor = 'pink'
 	</script>
 </body>
 </html>

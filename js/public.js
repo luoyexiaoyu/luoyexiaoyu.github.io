@@ -31,17 +31,22 @@ function writer(text,i,callback) {
 		document.getElementById("text").innerHTML = text.substring(0, i + 1)
 		setTimeout(function () {
             writer(text, i + 1, callback)
-        }, 150);
+        }, 200);
 	}
 	else if (typeof callback == 'function') {
-        setTimeout(callback, 1000);
+        setTimeout(callback, 1500);
     }
 }
 
 function startAnimation(i) {
 	if (i < data[i].length) {
 		writer(data[i],0,function() {
-			startAnimation(i + 1)
+			if(i >= data.length-1) {
+				startAnimation(i - 2)
+			}
+			else {
+				startAnimation(i + 1)
+			}
 		})
 	}
 }

@@ -1,0 +1,122 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	background-color: #EFEFEF;
+}
+.box {
+	width: 76%;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 5px dashed orange;
+}
+.head {
+	width: 100%;
+	height: 200px;
+	background-color: #FFFECE;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.logo {
+	position: relative;
+	width: 100%;
+	height: 150px;
+	overflow: hidden;
+}
+.logo img:nth-child(1) {
+	float: left;
+}
+.logo .span {
+	float: left;
+	width: 280px;
+	height: 150px;
+	text-align: center;
+	line-height: 150px;
+	color: purple;
+	font-size: 50px;
+	letter-spacing: 5px;
+	font-weight: bolder;
+}
+.ls {
+	float: left;
+	width: 360px;
+	height: 100%;
+}
+#p1,#p2,#p3 {
+	color: gray;
+	font-size: 15px;
+}
+#p1 {
+	position: absolute;
+	top: 20px;
+	left: 0;
+	opacity: 0
+}
+#p2 {
+	position: absolute;
+	bottom: 50px;
+	right: 0;
+	opacity: 0;
+}
+#p3 {
+	position: absolute;
+	bottom: 8px;
+	right: 200px;
+	text-align: right;
+	display: none;
+}
+#p3 span {
+	color: red;
+}
+.imglast {
+	float: right;
+}
+.nav {
+	width: 100%;
+	height: 50px;
+	border-radius: 5px;
+	background-color: #66CCCC;
+	overflow: hidden;
+}
+.nav ul {
+	list-style: none;
+}
+.nav ul li {
+	float: left;
+	width: 200px;
+	height: 50px;
+	margin-right: 75px;
+}
+.nav ul li a {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	font-weight: bolder;
+	width: 200px;
+	height: 50px;
+	color: blue;
+	border-radius: 8%;
+}
+.nav .liLast {
+	float: right;
+	margin-right: 0;
+}
+.current {
+	background-color: pink;
+}
+.bottomlast {
+	width: 100%;
+	height: 50px;
+	border-radius: 8px;
+	background-color: #66CCCC;
+	text-align: center;
+	line-height: 50px;
+	color: #666666;
+	font-size: 15px;
+	font-weight: bolder;
+}

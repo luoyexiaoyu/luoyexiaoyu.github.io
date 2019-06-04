@@ -1,0 +1,163 @@
+
+.aditor {
+	width: 100%;
+	height: 70px;
+	line-height: 60px;
+	color: gray;
+}
+.big {
+	width: 100%;
+	overflow: hidden;
+}
+.aleft {
+	float: left;
+	width: 700px;
+	overflow: hidden;
+	background-color: white;
+/*	background-color: red;*/
+}
+.aleft img {
+	margin: 10px 0 0 10px;
+}
+.about {
+	float: right;
+	width: 350px;
+	height: 100%;
+}
+.about ul {
+	list-style: none;
+}
+.about li {
+	width: 330px;
+	height: 190px;
+	padding-top: 10px;
+	color: #666666;
+}
+.about h3 {
+	color: #73706D;
+	font-size: 17px;
+	font-weight: bolder;
+}
+.about li p {
+	margin-top: 20px;
+	text-indent: 2em;
+	font-size: 15px;
+}
+.aboutBottom {
+	width: 700px;
+	height: 300px;
+	color: #666666;
+	font-size: 15px;
+}
+.aboutBottom p {
+	text-indent: 2em;
+	margin: 0 20px 0 10px;
+	margin-top: 30px;
+}
+.aright {
+	width: 300px;
+	height: 700px;
+	/*background-color: red;*/
+	float: right;
+}
+.search {
+	position: relative;
+	width: 100%;
+	height: 70px;
+	padding-top: 30px;
+	background-color: white;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.search input:nth-child(1) {
+	width: 200px;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	padding: 1px 0;
+	padding-left: 20px;
+}
+.search .button {
+	position: absolute;
+	top: 33px;
+	right: 43px;
+	width: 24px;
+	height: 30px;
+	background: url(../images/sousuo.png) no-repeat center;
+	border: none;
+}
+.person {
+	width: 100%;
+	height: 150px;
+	background-color: white;
+	margin-bottom: 30px;
+}
+.person ul {
+	list-style: none;
+}
+.person ul li {
+	display: inline-block;
+	width: 100px;
+	height: 50px;
+	margin: 13px 23px;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 8px;
+	background-color: red;
+	cursor: pointer;
+}
+.person li:nth-child(1) {
+	background-color: #666666;
+}
+.person li:nth-child(2) {
+	background-color: #01CCCB;
+}
+.person li:nth-child(3) {
+	background-color: #CC9867;
+}
+.person li:nth-child(4) {
+	background-color: #6734CC;
+}
+.person li div {
+	display: inline-block;
+	width: 100px;
+	height: 50px;
+	color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 50px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.person li div:hover {
+	transform: rotate(360deg);
+}
+.person li div {
+	transform: rotate(-360deg);
+	transition: 2s;
+}
+.xinxi {
+	width: 100%;
+	background-color: white;
+	overflow: hidden;
+}
+.xinxi > p {
+	font-size: 16px;
+	padding-left: 10px;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 15px;
+	border-left: 2px solid #3472EF;
+}
+.xinxi ul {
+	list-style: none;
+}
+.xinxi li {
+	display: list-item;
+	height: 30px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	font-size: 15px;
+	line-height: 30px;
+}

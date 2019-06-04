@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        #userLook{
+            position: relative;
+            width: 300px;
+            height: 500px;
+            margin: 30px auto;
+            border: 3px solid skyblue;
+            /*overflow: hidden;*/
+        }
+        #box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: mymove 10s linear infinite;
+        }
+        #stopbox {
+        	display: none;
+        	position: absolute;
+        	width: 200px;
+        	height: 100px;
+        	background-color: orange;
+        	top: 200px;
+        	left: 50%;
+        	margin-left: -100px;
+        	padding-bottom: 10px;
+        	border-radius: 20px;
+        }
+        #stopbox .stopbox1 {
+        	width: 100%;
+        	height: 50px;
+        	color: blue;
+        	font-weight: bolder;
+        	line-height: 50px;
+        	text-align: center;
+        	border-radius: 20px;
+        }
+        #stopbox .stopbox2 {
+        	display: flex;
+        	justify-content: space-around;
+        	width: 100%;
+        	height: 50px;
+        	border-radius: 20px;
+        }
+        #stopbox .stopbox2 span{
+        	width: 50px;
+        	height: 50px;
+        	color: blue;
+        	font-weight: 300;
+        	box-sizing: border-box;
+        	border-radius: 50%;
+        	background-color: red;
+        	text-align: center;
+        	line-height: 50px;
+        	cursor: pointer;
+        	z-index: 500;
+        }
+        #gameOver{
+            position: absolute;
+            top: -500px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 500;
+            transition: 1s;
+        }
+        #gameOver .gameOverTop{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 180px;
+            box-sizing: border-box;
+            padding: 0 40px;
+        }
+        #gameOver .gameOverTop > div{
+            width: 20px;
+            height: 100%;
+            background-color: hotpink;
+        }
+        #gameOver .gameOverContent {
+            width: 100%;
+            height: 150px;
+        }
+        #gameOver .gameOverContent > div{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 200px;
+            height: 100%;
+            margin: auto;
+            background-color: hotpink;
+            border: 5px solid chocolate;
+            text-align: center;
+        }
+        #gameOver .gameOverContent > div .btn{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #gameOver .gameOverContent > div .btn > div{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            color: yellow;
+            font-weight: bold;
+        }
+        .gameEase{
+            background-image: url("./img/bbg.jpg");
+        }
+        @keyframes mymove{
+            0%{
+                background-position: 0 0;
+            }
+            100%{
+                background-position: 0 500px;
+            }
+        }
+        #user{
+            position: absolute;
+            width: 35px;
+            height: 50px;
+            background: url("./img/user.png") no-repeat center/cover;
+        }
+        #game{
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .enemy{
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background: url("./img/enemy.png") no-repeat center/cover;
+        }
+        .bullet{
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background: url("./img/bullet.png") no-repeat center/cover;
+        }
+        .boom {
+            background: url("./img/boom.png") no-repeat center/cover;
+        }
+        #boxtop{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            width: 300px;
+            height: 30px;
+            z-index: 100;
+        }
+        #boxtop .life{
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            background: url("./img/life.png") no-repeat center/cover;
+        }
+        #boxtop .stop {
+        	display: block;
+        	width: 20px;
+        	height: 20px;
+			border-radius: 50%;
+        	background: url("./img/start.gif") no-repeat center/cover;
+        }
+        #boxtop > div{
+            display: flex;
+            line-height: 30px;
+            color: #fffe54;
+        }
+        #boxtop .grade{
+            padding: 0 10px;
+        }
+        #index{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            perspective: 500px;
+            z-index: 200;
+        }
+        #index .api{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+            background-color: #ddd;
+            transition: .5s;
+        }
+        #index .api > div{
+            width: 60px;
+            height: 30px;
+            border: 10px solid yellow;
+            background-color: #fff;
+            line-height: 30px;
+            text-align: center;
+            overflow: hidden;
+            font-size: 20px;
+            font-weight: bold;
+            color: hotpink;
+        }
+        #index .left{
+            align-items: flex-end;
+            transform-origin:left;
+        }
+        #index .left > div{
+            border-radius: 30px 0 0 30px ;
+            border-right: none;
+        }
+        #index .right{
+            align-items: flex-start;
+            transform-origin:right;
+        }
+        #index .right > div{
+            border-radius: 0 30px 30px 0;
+            border-left: none;
+        }
+        #setGame{
+            display: none;
+            position: absolute;
+            z-index: 200;
+            box-sizing: border-box;
+            padding: 50px 20px;
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+            font-size: 20px;
+            color: red;
+            background-color: #eee;
+        }
+        .return {
+            display: block;
+            text-decoration: none;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: gray;
+            color: gold;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../game.html" class="return">返回主页</a>
+	<audio src="audio/bg.mp3" loop></audio>
+	<audio src="audio/baoza.mp3"></audio>
+    <div id="userLook">
+        <div id="game">
+            <div id="boxtop">
+                <div>
+                    <div class="life"></div>
+                    <div class="life"></div>
+                    <div class="life"></div>
+                </div>
+                <div>
+                    <span class="grade">0</span>
+                </div>
+            </div>
+            <div id="box">
+				
+            </div>
+            <div id="stopbox">
+				<div class="stopbox1">确定退出吗？</div>
+				<div class="stopbox2">
+					<span onclick="stopbox.style.display='none';game.startGame(false);game.outGame()">确定</span>
+					<span onclick="stopbox.style.display='none';data.timer = setInterval(game.apply.bind(game), data.initData.initTime);audios[0].play()">取消</span>
+				</div>
+            </div>
+            <div id="gameOver">
+                <div class="gameOverTop">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="gameOverContent">
+                    <div>
+                        <div>
+                            <span class="gameOverGrade">100</span>分
+                        </div>
+                        <div class="btn">
+                            <div onclick="game.againGame()">
+                                <span>再来一次</span>
+                            </div>
+                            <div>
+                                <span onclick="game.outGame()">返回</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="index">
+            <div class="left api">
+                <div onclick="game.gameEase()">简</div>
+                <div onclick="game.genGame()">一</div>
+                <div onclick="game.hartGame()">困</div>
+                <div onclick="game.hellGame()">炼</div>
+                <div onclick="game.setGame()">设</div>
+            </div>
+            <div class="right api">
+                <div onclick="game.gameEase()">单</div>
+                <div onclick="game.genGame()">般</div>
+                <div onclick="game.hartGame()">难</div>
+                <div onclick="game.hellGame()">狱</div>
+                <div onclick="game.setGame()">置</div>
+            </div>
+        </div>
+        <div id="setGame">
+            <div onclick="game.outGame()">
+                <span>返回</span>
+            </div>
+            <div>
+                <span>选择操作方式</span>
+            </div>
+            <div>
+                <input class="checkboxGame" type="checkbox"  onclick="data.changeOpe(0)">
+                <span>鼠标</span>
+                <input class="checkboxGame" type="checkbox" checked onclick="data.changeOpe(1)">
+                <span>按键</span>
+            </div>
+            <div>
+                暂停退出键 ESC
+            </div>
+        </div>
+    </div>
+<script>
+    const box = document.getElementById('box')
+    const grade = document.getElementsByClassName('grade')[0]
+    const stopbox = document.getElementById('stopbox')
+    const audios = document.querySelectorAll('audio')
+    class Enemy{
+        constructor(){
+            this.top = 0;
+            this.left = Math.floor(Math.random() * 275)
+        }
+        move(){
+            this.top += this.speed
+        }
+        overflowShow(){
+            if (this.top > 450) return true;
+            return false
+        }
+        showApi(){
+            return `<div class="enemy" style="top: ${this.top}px;left: ${this.left}px;"></div>`
+        }
+    }
+    class EnemyEase extends Enemy{
+        constructor(props){
+            super(props);
+            this.life = 1
+            this.garde = 5;
+            this.speed = (Math.floor(Math.random() * 2) + 1)
+        }
+    }
+    class Boom {
+        constructor(data) {
+            this.width = data.width
+            this.height = data.height
+            this.top = data.top
+            this.left = data.left
+            this.life = 0
+        }
+        createBoom(){
+            const app = `<div class="boom" style="width: ${this.width}px;height: ${this.height}px;border-radius: 45%;position: absolute;top: ${this.top}px;left: ${this.left}px;"></div>`
+            return app
+
+        }
+    }
+    class User{
+        constructor() {
+            this.top = 450;
+            this.left = 125;
+            this.life = 3;
+            this.timeintal = null
+        }
+        userPlane(){
+            return `<div id="user" style="top: ${this.top}px;left: ${this.left}px;"></div>`;
+        }
+        mouse(event){
+            const e = event || window.event
+            const gameApi = document.getElementById('game')
+            this.top = e.clientY - 50
+            this.left = e.clientX - gameApi.getBoundingClientRect('left').x - 15
+        	document.onmousemove = function (event) {
+                const e = event || window.event
+
+                let top = e.clientY - 50
+                top = Math.min(450, top)
+                top = Math.max(0, top)
+                game.user.top = top
+
+                const x = gameApi.getBoundingClientRect('left').x
+                let left = e.clientX - x -15
+                left = Math.max(0, left)
+                left = Math.min(265, left)
+                game.user.left = left
+            }
+        }
+        key(){
+            let bool = false
+            document.addEventListener('keydown', e => {
+                if (bool){
+                    e.preventDefault() //阻止默认事件发生
+                } else{
+                    bool = true
+                    this.move.call(this,e, false)
+                }
+            },false)
+            document.addEventListener('keyup',e => {
+                bool = false
+                this.move(e, true)
+            }, false)
+            this.timer(true)
+        }
+        move(key, up){
+            const keyCode = key.keyCode
+            if (up){
+                game.dir = "null"
+            } else{
+                switch (keyCode) {
+                    case 37: game.dir = "left"
+                        break;
+                    case 65: game.dir = "left"
+                        break;
+                    case 39: game.dir = "right"
+                        break;
+                    case 68: game.dir = "right"
+                        break;
+                    case 38: game.dir = "top"
+                        break;
+                    case 87: game.dir = "top"
+                        break;
+                    case 40: game.dir = "bottom"
+                        break;
+                    case 83: game.dir = "bottom"
+                        break;
+                    default : game.dir = "null"
+                        break
+                }
+            }
+        }
+        timer(bool){
+            if (!bool) return clearInterval(this.timeintal)
+            this.timeintal = setInterval( () => {
+                if (!game.dir) return
+                switch (game.dir) {
+                    case 'top': this.top -= 3
+                        this.top = Math.max(0, this.top)
+                        break;
+                    case 'bottom': this.top += 3
+                        this.top = Math.min(this.top, 450)
+                        break;
+                    case 'left': this.left -= 3
+                        this.left = Math.max(0, this.left)
+                        break;
+                    case 'right': this.left += 3
+                        this.left = Math.min(this.left, 265)
+                        break;
+                    default: this.top += 0
+                        break;
+                }
+            },10)
+
+        }
+    }
+    class Bullet{
+        constructor(data){
+            this.left = [data.left];
+            this.top = data.top;
+        }
+        moveBullet(){
+            this.top -= 4;
+        }
+        removeBullet(){
+            if (this.top < 0) return true;
+            return false;
+        }
+        createBullet(){
+            let div = ''
+            this.left.map((item, index) => {
+                div += `<div class="bullet" style="top: ${this.top}px;left: ${item}px;"></div>`
+            })
+            return div
+        }
+    }
+    class BulletEase extends Bullet{
+        constructor(props) {
+            super(props);
+            this.left = [props.left + 12]
+        }
+    }
+    class BulletDob extends Bullet{
+        constructor(props) {
+            super(props);
+            this.left = [props.left - 4, props.left + 28]
+        }
+    }
+    class BulletMore extends Bullet{
+        constructor(props) {
+            super(props);
+            this.left = [props.left - 4, props.left + 12, props.left + 28]
+        }
+
+    }
+    const game ={
+        // 开门动画
+        goGame(){
+            const leftDiv = document.getElementsByClassName('left')[0]
+            const rightDiv = document.getElementsByClassName('right')[0]
+            leftDiv.style.transform = 'rotateY(110deg)'
+            rightDiv.style.transform = 'rotateY(-110deg)'
+            
+        },
+        // 关门动画  按键返回
+        outGame(){
+            const gameOverApi = document.getElementById('gameOver')
+            gameOverApi.style.top = - 500 + 'px'
+            gameOverApi.style.zIndex = -11
+
+            const setGame = document.getElementById('setGame')
+            setGame.style.display = 'none'
+
+            const gameApi = document.getElementById('game')
+            gameApi.style.display = 'none'
+
+            const leftDiv = document.getElementsByClassName('left')[0]
+            const rightDiv = document.getElementsByClassName('right')[0]
+            leftDiv.style.transform = 'rotateY(0deg)'
+            rightDiv.style.transform = 'rotateY(0deg)'
+            audios[0].pause()
+        },
+        // 简单模式
+        gameEase(){
+            this.goGame()
+            const gameApi = document.getElementById('game')
+            gameApi.style.display = 'block'
+            box.classList.add('gameEase')
+            data.dif = 0
+            data.initData.initTime = data.initData.dif[data.dif].initTime
+            data.initData.bulletTime = data.initData.dif[data.dif].bulletTime
+            this.startGame(true)
+            audios[0].play()
+        },
+        // 一般模式
+        genGame(){
+            this.goGame()
+            const gameApi = document.getElementById('game')
+            gameApi.style.display = 'block'
+            box.classList.add('gameEase')
+            data.dif = 1
+            data.initData.initTime = data.initData.dif[data.dif].initTime
+            data.initData.bulletTime = data.initData.dif[data.dif].bulletTime
+            this.startGame(true)
+            audios[0].play()
+        },
+        //困难模式
+        hartGame(){
+            this.goGame()
+            const gameApi = document.getElementById('game')
+            gameApi.style.display = 'block'
+            box.classList.add('gameEase')
+            data.dif = 2
+            data.initData.initTime = data.initData.dif[data.dif].initTime
+            data.initData.bulletTime = data.initData.dif[data.dif].bulletTime
+            this.startGame(true)
+            audios[0].play()
+        },
+        // 炼狱模式
+        hellGame(){
+            this.goGame()
+            const gameApi = document.getElementById('game')
+            gameApi.style.display = 'block'
+            box.classList.add('gameEase')
+            data.dif = 3
+            data.initData.initTime = data.initData.dif[data.dif].initTime
+            data.initData.bulletTime = data.initData.dif[data.dif].bulletTime
+            this.startGame(true)
+            audios[0].play()
+        },
+        // 打开设置
+        setGame(){
+            game.goGame()
+            const setGame = document.getElementById('setGame')
+            setTimeout(()=>{
+                setGame.style.display = 'block'
+            },300)
+        },
+        // 移动方向
+        dir: null,
+        // 用户飞机
+        user: null,
+        // 敌机数组
+        enemyes: [],
+        // 用户发出的子弹数组
+        bullets: [],
+        // 爆炸的飞机
+        boom: [],
+        num: 0,
+        // 存储渲染的字符串
+        demo: '',
+        // 初始化
+        init(){
+            this.user = new User()
+            this.enemyes = []
+            this.bullets = []
+            if (data.ope){
+                this.user.key()
+            } else {
+                this.user.mouse()
+            }
+            this.intCreateEnemy().call(game)
+            data.sumGarde = 0
+            grade.innerHTML = data.sumGarde
+            for (let i = 0; i < 3; i++){
+                const life = document.getElementsByClassName('life')[i]
+                life.style.backgroundImage = 'url(./img/life.png)'
+            }
+        },
+        // 先进行变换
+        enemychangeTop(){
+            this.enemyes.map((item, index) => {
+                if (item.overflowShow()){
+                    // 超出屏幕之外
+                    this.enemyes.splice(index, 1)
+                    return this.enemychangeTop()
+                }else {
+                    item.move();
+                }
+            });
+        },
+        bulletChangeTop(){
+            this.bullets.map((item, index) => {
+                if (item.removeBullet()) {
+                    // 子弹飞到顶层
+                    this.bullets.splice(index, 1);
+                    return  this.bulletChangeTop()
+                }else {
+                    item.moveBullet()
+                }
+            });
+            if (this.num++ > data.initData.bulletTime) {
+                this.num = 0;
+                if (data.sumGarde > 500){
+                    this.bullets.push(new BulletMore({left:this.user.left, top:this.user.top}))
+                } else if (data.sumGarde > 200){
+                    this.bullets.push(new BulletDob({left:this.user.left, top:this.user.top}))
+                } else {
+                    this.bullets.push(new BulletEase({left:this.user.left, top:this.user.top}))
+                }
+            }
+        },
+        // 判断是否打中敌机
+        beat(){
+            this.enemyes.map((item, index) => {
+               for (let i = 0,len = this.bullets.length; i < len; i++){
+                   for (let j = 0,leng = this.bullets[i].left.length; j < leng; j++){
+                       if ((this.bullets[i].left[j] + 10) > item.left && this.bullets[i].left[j] < (item.left + 25)) {
+                           //横水平 满足
+                           if ((this.bullets[i].top < item.top + 40) && (item.top < this.bullets[i].top + 15)){
+                               // 确定为击中
+                               this.enemyes[index].life--
+                               if (this.enemyes[index].life === 0){
+                                   this.boom.push(new Boom({
+                                       width: 25,
+                                       height: 40,
+                                       top: item.top,
+                                       left: item.left
+                                   }))
+                                   data.sumGarde += item.garde
+                                   grade.innerHTML = data.sumGarde
+                                   this.enemyes.splice(index, 1)
+                               }
+                               this.bullets.splice(i, 1)
+                               return this.beat()
+                           }
+                       }
+                   }
+
+               }
+            })
+        },
+        beatUser(){
+            this.enemyes.map((item, index) => {
+                if ((item.left < this.user.left + 35) && (this.user.left < item.left + 25)){
+                    if ((this.user.top < item.top + 40) && (item.top < this.user.top + 50)){
+                        this.boom.push(new Boom({
+                            width: 25,
+                            height: 40,
+                            top: item.top,
+                            left: item.left
+                        }))
+                        this.enemyes.splice(index, 1)
+                        this.user.life--
+                        if (this.user.life <= 0){
+                            this.gameOver()
+                        } else {
+                            this.applyLife(this.user.life)
+                            return this.beatUser(this.user.life)
+                        }
+
+                    }
+                }
+            })
+        },
+        applyLife(data){
+            for (let i = 0; i < 3; i++){
+                if (i === data){
+                    const life = document.getElementsByClassName('life')[i]
+                    life.style.backgroundImage = 'url(./img/nolife.png)'
+                    return
+                }
+            }
+        },
+        intCreateEnemy(){
+            let num = 1,
+                number = 0
+            function  fn() {
+                data.dif = Math.min(3, ++data.dif)
+                data.initData.initTime = data.initData.dif[data.dif].initTime
+                data.initData.bulletTime = data.initData.dif[data.dif].bulletTime
+            }
+            return function () {
+                setInterval(() => {
+                    let ran = Math.floor(data.sumGarde / 100) + 1
+                    ran = Math.min(ran, 5)
+                    num = Math.floor(Math.random() * ran) + 1
+                    for (let i = 0; i < num; i++){
+                        this.enemyes.push(new EnemyEase())
+                    }
+                    if (data.sumGarde > 300){
+                        if (number === 1) { return }
+                        fn()
+                        number = 1
+                    } else if (data.sumGarde < 1000 && data.sumGarde > 300) {
+                        if (number === 2) { return }
+                        fn()
+                        number = 2
+                    }else if (data.sumGarde > 1000){
+                        if (number === 3) { return }
+                        fn()
+                        number = 3
+                    }
+                }, 1000)
+            }
+        },
+        boomOut(){
+            this.boom.map((item, index) => {
+                if (item.life > 50){
+                    this.boom.splice(index, 1)
+                    audios[1].play()
+                    return this.boomOut()
+                } else{
+                    this.boom[index].life++
+                    audios[1].play()
+                }
+            })
+        },
+        // 进行渲染
+        apply(){
+            this.enemychangeTop();
+            this.bulletChangeTop()
+            this.beatUser()
+            this.beat()
+            this.boomOut()
+            this.demo = '';
+            this.demo += this.user.userPlane();
+            this.enemyes.map((item, index) => {
+                this.demo += item.showApi()
+            });
+            this.bullets.map((item, index) => {
+                this.demo += item.createBullet()
+            });
+            this.boom.map((item, index) => {
+                this.demo += item.createBoom()
+            })
+            box.innerHTML = this.demo
+        },
+        // 开始游戏
+        startGame(bool){
+            if (!bool){
+                return clearInterval(data.timer)
+            }
+            this.init()
+            data.timer = setInterval(this.apply.bind(game), data.initData.initTime);
+        },
+        gameOver(){
+            // 赋予结果分数
+            const gameOverGrade = document.getElementsByClassName('gameOverGrade')[0]
+            gameOverGrade.innerHTML = data.sumGarde
+            // 显示结果
+            const gameOverApi = document.getElementById('gameOver')
+            gameOverApi.style.top = 0
+            gameOverApi.style.zIndex = 500
+            // 停止定时器
+            this.startGame(false)
+        },
+        againGame(){
+            const gameOverApi = document.getElementById('gameOver')
+            gameOverApi.style.top = - 500 + 'px'
+            gameOverApi.style.zIndex = 0
+            this.init()
+            data.timer = setInterval(this.apply.bind(game), data.initData.initTime);
+        }
+    }
+    const data = {
+        sumGarde: 0,
+        timer: null,
+        // 难度
+        dif: 0,
+        initData: {
+            dif: [
+                {
+                    initTime: 20,
+                    bulletTime: 30
+                },
+                {
+                    initTime: 15,
+                    bulletTime: 25
+                },
+                {
+                    initTime: 10,
+                    bulletTime: 20
+                },
+                {
+                    initTime: 5,
+                    bulletTime: 10
+                }
+            ],
+            // 控制初始敌机速度
+            initTime: 20,
+            // 控制子弹出现的间隔
+            bulletTime: 0,
+        },
+        // 选择操作方式  0-鼠标  1-按键
+        ope: 1,
+        changeOpe(index){
+            const changeApi = document.getElementsByClassName('checkboxGame')
+            for (let i = 0, len = changeApi.length; i < len; i++){
+                changeApi[i].checked = false
+            }
+            changeApi[index].checked = true
+            data.ope = index
+        }
+    }
+    document.addEventListener('keydown',e => {
+    	var keyCode = e.keyCode
+    	if(keyCode !== 27) return
+    	game.startGame(false)
+    	stopbox.style.display = 'block'
+    	audios[0].pause()	
+    },false)
+</script>
+</body>
+</html>

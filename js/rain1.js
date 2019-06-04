@@ -1,7 +1,7 @@
 var can = document.getElementById("canvas");
 var ctx = can.getContext("2d");//设置绘图环境
-var w = can.width = 1300;//把窗口的宽度赋值给画布1300
-var h = can.height = 700;//把窗口的高度赋值给画布700
+var w = can.width = 1035;//把窗口的宽度赋值给画布1300
+var h = can.height = 887;//把窗口的高度赋值给画布700
 var count = 30;//雨滴的个数
 var drops = [];//定义一个空数组来保存雨滴个数
 function Drop(){}//定义雨滴对象

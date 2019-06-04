@@ -29,8 +29,13 @@
 	color: #D79D9B;
 }
 .section {
-	background: url(../images/bg2.jpg) repeat-y center;
+	/*background: url(../images/bg2.jpg) repeat-y center;*/
 	padding-bottom: 10px;
+}
+#canvas {
+	background:#000;
+	position: absolute;
+	z-index: -1;
 }
 .sectionTop {
 	overflow: hidden;

@@ -2,40 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>index</title>
+	<title>demo</title>
 	<link rel="shortcut icon" href="images/favicon.ico" />
-	<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/public.css" />
+	<link rel="stylesheet" href="css/demo.css" />
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#p1').animate({left:'500px',opacity:1},3000)
+			$('#p2').animate({right:'150px',opacity:1},3000)
+			$('#p3').show(3000)
+		})
+	</script>
 </head>
 <body>
 	<div class="box">
-		<audio src="audio/woceng.mp3" autoplay loop></audio>
-		<canvas id="canvas">您的浏览器不支持cnavas绘图，请您更换浏览器!!</canvas>
-		<div class="top">个人主页</div>
-		<div class="middle">
-			<div class="left">
-				<div class="img"></div>
-				<div class="text" id="text"></div>
-				<div class="contact">联系人qq：1819650049</div>
+		<audio src="audio/wuwei.mp3" autoplay loop></audio>
+		<div class="head">
+			<div class="logo">
+				<img src="images/name3.jpg" alt="" />
+				<span class="span" id="text"></span>
+				<div class="ls">
+					<p id="p1">从不羡慕别人的优秀，因为相信自己也可以优秀。</p>
+					<p id="p2">闲下来时看看书，书本里的故事，总有你学到的人生。</p>
+					<p id="p3">
+						---By: <span>董志胜</span>
+					</p>
+				</div>
+				<img class="imglast" src="images/tea.jpg" alt="" />
 			</div>
-			<div class="right">
-				<div><a href="demo.html">首页</a></div>
-				<div><a href="about.html">关于我</a></div>
-				<div><a href="game.html">游戏</a></div>
-				<div><a href="rotate.html">手风琴</a></div>
+			<div class="nav">
+				<ul id="ul">
+					<li><a href="index.html" class="lia">首页</a></li>
+					<li><a href="about.html" class="lia">关于我</a></li>
+					<li><a href="game.html" class="lia">游戏</a></li>
+					<li class="liLast"><a href="rotate.html" class="lia">手风琴</a></li>
+				</ul>
 			</div>
 		</div>
-		<div class="bottom">谢谢光临</div>
+		<div class="section">
+			<canvas id="canvas">您的浏览器不支持cnavas绘图，请您更换浏览器!!</canvas>
+			<div class="sectionTop">
+				<div id="img">
+					<ul id="ul2">
+						<li><img src="images/pic1.jpg" alt="" /></li>
+						<li><img src="images/pic2.jpg" alt="" /></li>
+						<li><img src="images/pic3.jpg" alt="" /></li>
+						<li><img src="images/pic4.jpg" alt="" /></li>
+						<li><img src="images/pic5.jpg" alt="" /></li>
+					</ul>
+				</div>
+				<div class="imgr">
+					<img src="images/right.jpg" alt="" />
+					<p>毕竟不是作家。写不出那么好的文章。&nbsp;——因为没有丰富阅历和经验！</p>
+				</div>
+			</div>
+			<div class="sectionBottom" id="sectionBottom">
+				<div class="h"></div>
+				<div class="m"></div>
+				<div class="s"></div>
+			</div>
+		</div>
+		<div class="bottomlast">欢迎光临</div>
 	</div>
-	<script type="text/javascript">
-		function ado() {
-			var audio = document.querySelector("audio");
-			document.onclick = function() {
-				audio.play();
-			} //audio标签在谷歌浏览器不能自动播放 设置一个点击事件
-		}
-		ado();
-	</script>
-	<script type="text/javascript" src="js/rain.js"></script>
-	<script type="text/javascript" src="js/writer.js"></script>
+	<script type="text/javascript" src="js/public.js"></script>
+	<script type="text/javascript" src="js/demo.js"></script>
+	<script type="text/javascript" src="js/rain1.js"></script>
 </body>
 </html>

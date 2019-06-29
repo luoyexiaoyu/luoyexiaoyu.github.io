@@ -36,11 +36,11 @@
 					<li><a href="index.html" class="lia">首页</a></li>
 					<li><a href="about.html" class="lia">关于我</a></li>
 					<li><a href="game.html" class="lia">游戏</a></li>
-					<li class="liLast"><a href="rotate.html" class="lia" id="lia4">手风琴</a></li>
+					<li class="liLast"><a href="rotate.html" class="lia" id="lia4">留言板</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="aditor"> > 手风琴</div>
+		<div class="aditor"> > 留言板</div>
 		<div class="qin" id="qin">
 			<ul>
 				<li></li>
@@ -49,6 +49,17 @@
 				<li></li>
 				<li></li>
 			</ul>
+		</div>
+		<div class="talk" id="talk">
+			<span>留言板</span>
+			<div class="talktop">
+				<input type="text" id="ipt" placeholder="请输入您的昵称" />
+				<button id="btn">发表</button>
+				<textarea name="" id="txt" cols="75" rows="6">请发表您的意见</textarea>
+			</div>
+			<div id="box">
+				
+			</div>
 		</div>
 		<div class="bottomlast">欢迎光临</div>
 	</div>
@@ -73,6 +84,71 @@
 			}
 		}
 		lia.style.backgroundColor = 'pink'
+		var ipt = document.getElementById('ipt')
+		var btn = document.getElementById('btn')
+		var txt = document.getElementById('txt')
+		var box = document.getElementById('box')
+		ipt.onfocus = function() {
+				this.placeholder = ''
+		}
+		ipt.onblur = function() {
+			if(this.value == '') {
+				this.placeholder = "请输入您的昵称"
+			}
+			else {
+				this.placeholder = ""
+			}
+		}
+		txt.onfocus = function() {
+			 if(this.value == '请发表您的意见') {
+			 	this.value = ''
+			 	this.style.color = 'black'
+			 }
+		}
+		txt.onblur = function() {
+			if(this.value == '') {
+				this.value = '请发表您的意见'
+				this.style.color = '#757575'
+			}
+		}
+		btn.onclick = function() {
+			if(txt.value == '请发表您的意见' || txt.value == '') {
+				return
+			}
+			var div = document.createElement('div')
+			var divs = box.children
+			div.className = 'talkbottom'
+			if(divs.length == 0) {
+				box.appendChild(div)
+			} else {
+				box.insertBefore(div,divs[0])
+			}
+
+			var h2 = document.createElement('h2')
+			if(ipt.value == '') {
+				h2.innerHTML = '匿名评论'
+			} else {
+				h2.innerHTML = ipt.value
+			}
+			ipt.value = ''
+			ipt.placeholder = "请输入您的昵称"
+			div.appendChild(h2)
+
+			var time = document.createElement('div')
+			var date = new Date()
+			time.innerHTML = date.toLocaleString()
+			div.appendChild(time)
+
+			var hr = document.createElement('hr')
+			div.appendChild(hr)
+
+			var pinglun = document.createElement('div')
+			pinglun.innerHTML = txt.value
+			txt.value = '请发表您的意见'
+			txt.style.color = '#757575'
+
+			div.appendChild(pinglun)
+		}
 	</script>
 </body>
 </html>
